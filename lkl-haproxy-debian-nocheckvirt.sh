@@ -24,11 +24,6 @@ check_root(){
 	[[ "`id -u`" != "0" ]] && echo -e "${Error} must be root user !" && exit 1
 }
 
-check_ovz(){
-	apt-get update && apt-get install -y virt-what
-	[[ "`virt-what`" != "openvz" ]] && echo -e "${Error} only support OpenVZ !" && exit 1
-}
-
 check_ldd(){
 	#ldd=`ldd --version | grep ldd | awk '{print $NF}'`
 	[[ "`ldd --version | grep ldd | awk '{print $NF}'`" < "2.14" ]] && echo -e "${Error} ldd version < 2.14, not support !" && exit 1
